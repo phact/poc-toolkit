@@ -8,11 +8,14 @@ $('form').jsonForm(
                     "type": "object",
                     "title": "Task",
                     "properties": {
-                        "description": {
+                        "name": {
                             "type": "string",
-                            "title": "Description",
+                            "title": "Name",
                             "required": true
-
+                        },
+                        "description": {
+                            "type": "textarea",
+                            "title": "Description",
                         },
                         "completed": {
                             "type": "string",
@@ -35,9 +38,9 @@ $('form').jsonForm(
         },
         "value": {
             "tasks": [
-                { "description": "Hardware Sizing and Signoff", "completed": "true", "percent": 34  },
-                { "description": "Hardware Provisioning", "completed": "false", "percent": 6  },
-                { "description": "Data Model"   }
+                { "name": "Hardware Sizing and Signoff", "completed": "true", "percent": 34  },
+                { "name": "Hardware Provisioning", "completed": "false", "percent": 6  },
+                { "name": "Data Model"   }
 
             ]
 
