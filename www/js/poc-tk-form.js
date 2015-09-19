@@ -1,51 +1,97 @@
 $('form').jsonForm(
 
-    {
+ {
         "schema": {
-            "tasks": {
+            "milestone": {
                 "type": "array",
                 "items": {
                     "type": "object",
-                    "title": "Task",
+                    "title": "Milestone",
                     "properties": {
                         "name": {
-                            "type": "string",
-                            "title": "Name",
-                            "required": true
+                            "type":"string",
+                            "title": "Milestone Name"
                         },
-                        "description": {
-                            "type": "textarea",
-                            "title": "Description",
-                        },
-                        "completed": {
-                            "type": "string",
-                            "title": "Completed?",
-                            "enum": [ "true", "false"]
 
-                        },
-                        "percent": {
-                            "type": "integer",
-                            "title": "Percent"
+                    "task": {
+                        "type": "array",
+                        "title": "Tasks",
+                        "items": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "name": {
+                                    "type":"string",
+                                    "title": "Type Name"
+                                },
+                                "duration": {
+                                    "type":"integer",
+                                    "title":"Duration(days)"
 
+                                },
+                                "content": {
+                                     "type":"textarea",
+                                     "title": "Content"
+                                }
+                            }
                         }
-
                     }
-
+                    },
                 }
-
             }
-
         },
+                      /*  ,
+                    "task": {
+                        "type": "string",
+                        "title": "Task"
+
+                    },
+
+                    "duration": {
+                        "type": "integer",
+                        "title": "Duration (days)"
+                    },
+                    "content": {
+                        "type": "textarea",
+                        "title": "Content",
+                    }*/
+
+        "form": [
+            {
+                "type": "tabarray",
+                "items": [
+                    {
+                        "type": "section",
+                        "title": "Milestone {{value}}",
+                        "items": [
+                            {
+                                "key":"milestone[]",
+                                "valueInLegend": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "actions",
+                "items": [
+                    {
+                        "type":"button",
+                        "title":"save",
+                        "onClick": function (evt) {
+                            alert(JSON.stringify( $('#form').jsonFormValue() )) ;
+                        }
+                    }
+                ]
+            },
+        ],
         "value": {
             "tasks": [
-                { "name": "Hardware Sizing and Signoff", "completed": "true", "percent": 34  },
-                { "name": "Hardware Provisioning", "completed": "false", "percent": 6  },
-                { "name": "Data Model"   }
+                { "milestone": "Organizational Alignment", }
 
             ]
 
         }
+ }
 
-
-
-    });
+);
