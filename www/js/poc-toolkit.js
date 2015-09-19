@@ -62,7 +62,13 @@ var buildGantt = function(){
         "NEW" : "bar-new"
     };
 
-    taskNames = ["Organizational Alignment", "Interest and understanding of Cassandra", "Find the right use case", "POC"]
+    taskNames = []
+    $.each(tasks,function(i,task){
+         taskNames.push(task.taskName)
+
+    })
+
+    taskNames = $.unique(taskNames)
 
     tasks.sort(function(a, b) {
         return a.endDate - b.endDate;
