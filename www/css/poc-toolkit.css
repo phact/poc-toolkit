@@ -35,6 +35,10 @@ html,body,#wrapper {
 	fill: #ffbb33;
 }
 
+.bar-new{
+     fill:gray;
+}
+
 #forkme_banner {
 	display: block;
 	position: absolute;
