@@ -106,8 +106,8 @@ d3.gantt = function() {
             info.selectAll("p").remove()
             info.append("p").html("Milestone: "+d.taskName)
             info.append("p").html("Task: "+d.jobName)
-            info.append("p").html("Status: "+d.issueData.fields.watches.watchCount)
-            info.append("p").html(": "+d.id)
+            info.append("p").html("Status: "+d.status)
+            info.append("p").html("ID: "+d.id)
 
         })
 

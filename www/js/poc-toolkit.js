@@ -21,37 +21,40 @@ var buildGantt = function(){
     $("#chart").empty()
 
     var id = 1;
+    var dayCount =0
     var taskArray=[]
-    var form= $('#form').jsonFormValue()
-    $.each(form.milestones, function(milestone_index, milestone){
+    var form= $('#form').jsonFormValue();
+    var milestones = []
+    milestones = form.milestones;
+    $.each(milestones, function(milestone_index,milestone){
         $.each(milestone.tasks, function(task_index, task){
-            console.log(milestone.name +" - "+ task.name)
+            //    console.log(milestone.name +" - "+ task.name)
             taskObject = {
-                "startDate":currentDay,
-                "endDate":currentDay.addDays(task.duration),
+                "startDate":currentDay.addDays(dayCount),
+                "endDate":currentDay.addDays(dayCount+task.duration),
                 "taskName":milestone.name,
                 "jobName":task.name,
                 "status":"NEW",
                 "id":id
             }
             id++
-            currentDay = currentDay.addDays(task.duration)
-            console.log(taskObject)
+                dayCount= dayCount+task.duration
+            //   console.log(taskObject)
             taskArray.push(taskObject)
 
         })
 
     })
 
-/*
-    tasks = [
-        {"startDate":today,"endDate":today.addDays(1),"taskName":"Organizational Alignment","status":"SUCCEEDED"}
-        ,{"startDate":new Date("Sep 18 02:36:45 EST 2015"),"endDate":new Date("Sep 18 03:36:45 EST 2015"),"taskName":"Interest and understanding of Cassandra","status":"RUNNING"}
-        ,{"startDate":new Date("Sep 18 03:36:45 EST 2015"),"endDate":new Date("Sep 18 04:36:45 EST 2015"),"taskName":"Find the right use case","status":"RUNNING"}
+    /*
+       tasks = [
+       {"startDate":today,"endDate":today.addDays(1),"taskName":"Organizational Alignment","status":"SUCCEEDED"}
+       ,{"startDate":new Date("Sep 18 02:36:45 EST 2015"),"endDate":new Date("Sep 18 03:36:45 EST 2015"),"taskName":"Interest and understanding of Cassandra","status":"RUNNING"}
+   ,{"startDate":new Date("Sep 18 03:36:45 EST 2015"),"endDate":new Date("Sep 18 04:36:45 EST 2015"),"taskName":"Find the right use case","status":"RUNNING"}
         ,{"startDate":new Date("Sep 18 02:36:45 EST 2015"),"endDate":new Date("Sep 18 05:36:45 EST 2015"),"taskName":"POC","status":"RUNNING"}
 
     ];
-*/
+    */
     tasks=taskArray;
 
     taskStatus = {
@@ -62,29 +65,28 @@ var buildGantt = function(){
         "NEW" : "bar-new"
     };
 
-    taskNames = []
-    $.each(tasks,function(i,task){
-         taskNames.push(task.taskName)
-
-    })
-
-    taskNames = $.unique(taskNames)
-
     tasks.sort(function(a, b) {
         return a.endDate - b.endDate;
     });
     maxDate = tasks[tasks.length - 1].endDate;
+
     tasks.sort(function(a, b) {
         return a.startDate - b.startDate;
     });
     minDate = tasks[0].startDate;
 
-    var format = "%H:%M";
+    taskNames = []
+    $.each(tasks,function(i,task){
+        taskNames.push(task.taskName)
+    })
+    taskNames = $.unique(taskNames).reverse()
+
+    var format = "%b:%d";
     var timeDomainString = "1week";
 
     gantt = d3.gantt().taskTypes(taskNames).taskStatus(taskStatus).tickFormat(format).height(450).width(800);
 
-//    changeTimeDomain(timeDomainString);
+    //    changeTimeDomain(timeDomainString);
 
     gantt.timeDomainMode("fit");
 
