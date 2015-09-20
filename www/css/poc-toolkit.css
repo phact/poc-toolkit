@@ -17,26 +17,38 @@ html,body,#wrapper {
 
 .bar {
 	fill: #33b5e5;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 .bar-failed {
 	fill: #CC0000;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 .bar-running {
 	fill: #669900;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 .bar-succeeded {
 	fill: #33b5e5;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 .bar-killed {
 	fill: #ffbb33;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 .bar-new{
      fill:gray;
+    stroke: #b6b6b6;
+    stroke-width:3px;
 }
 
 #forkme_banner {
