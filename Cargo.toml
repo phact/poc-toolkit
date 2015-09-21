@@ -1,0 +1,7 @@
+[package]
+
+name = "se-toolkit"
+version = "0.0.1"
+
+[dependencies]
+rustful = "0.5"
