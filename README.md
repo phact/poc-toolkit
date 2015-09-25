@@ -13,6 +13,6 @@ to run this thing follow these steps
 
 3) run the binary
 
-   $ target/debug/se-toolkit
+    $ target/debug/se-toolkit
    
 Hit your browser on localhost port 8080 
