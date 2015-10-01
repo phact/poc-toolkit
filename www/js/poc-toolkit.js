@@ -16,6 +16,13 @@ var minDate
 var gantt
 
 
+var saveTemplate = function(){
+    var form= $('#form').jsonFormValue();
+
+
+
+}
+
 var buildGantt = function(){
 
     $("#chart").empty()

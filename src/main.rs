@@ -18,8 +18,13 @@ use rustful::{
 use rustful::file::check_path;
 
 mod include_dir;
+mod create_schema;
+
 
 fn main() {
+
+    create_schema::create_schema();
+
     println!("Will serve at http://localhost:8080");
 
     include_dir::include_dir();
