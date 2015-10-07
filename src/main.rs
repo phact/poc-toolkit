@@ -19,6 +19,7 @@ use rustful::file::check_path;
 
 mod include_dir;
 mod create_schema;
+mod save_template;
 
 
 fn main() {
@@ -51,7 +52,8 @@ fn main() {
                 value: value.clone(),
                 operation: Some(sub)
             },
-            "/*file" => Get: Api::File
+            "/*file" => Get: Api::File,
+            "write/*payload" => Get: Api::Write
         }
     };
 
@@ -92,7 +94,8 @@ enum Api {
         value: Arc<RwLock<i32>>,
         operation: Option<fn(i32) -> i32>
     },
-    File
+    File,
+    Write
 }
 
 impl Handler for Api {
@@ -138,6 +141,13 @@ impl Handler for Api {
                 } else {
                     //No file name was specified
                     response.set_status(StatusCode::Forbidden);
+                }
+            },
+            Api::Write => {
+                 println!("Test Write");
+                 if let Some(payload) = context.variables.get("payload") {
+                    println!("the payload is {}",payload);
+                    save_template::save_template(&*payload);
                 }
             }
         }
