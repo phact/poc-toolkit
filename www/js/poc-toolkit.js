@@ -19,7 +19,17 @@ var gantt
 var saveTemplate = function(){
     var form= $('#form').jsonFormValue();
 
+    myAjaxCall = $.ajax({
+        url: "write/"+JSON.stringify(form),
+        context: document.body,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
 
+    }).done(function(data) {
+        console.log(data);
+        console.log("I wrote the payload to the db");
+
+    });
 
 }
 
