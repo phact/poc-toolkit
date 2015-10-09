@@ -11,7 +11,9 @@ To run this thing follow these steps
 
     $ curl -sSf https://static.rust-lang.org/rustup.sh | sh
 
-2) build it
+2) clone and build
+    
+    $ git clone https://github.com/phact/poc-toolkit.git
 
     $ cargo build
 
