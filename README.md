@@ -1,6 +1,10 @@
 # poc-toolkit
 
-to run this thing follow these steps
+Pre-req -- you must have a cassandra instance running on localhost and you must have built the c++ driver per the cassandra-rs README:
+
+https://github.com/phact/cassandra-rs/tree/phact-readme-update
+
+To run this thing follow these steps
 
 
 1) install rust
