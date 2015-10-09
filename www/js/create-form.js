@@ -25,14 +25,15 @@ var default_schema =
                                 },
                                 "duration": {
                                     "type":"integer",
-                                    "title":"Duration(days)"
+                                    "title":"Duration(days)",
+                                    "required":true
 
                                 },
                                 "content": {
                                     "type":"textarea",
                                     "title": "Content"
                                 }
-                            }
+                            }, "required":["duration"]
                         }
                     }
                 },

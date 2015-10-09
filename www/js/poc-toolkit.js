@@ -105,7 +105,7 @@ var buildGantt = function(){
         "SUCCEEDED" : "bar",
         "FAILED" : "bar-failed",
         "RUNNING" : "bar-running",
-        "KILLED" : "bar-killed",
+        "SKIPPED" : "bar-killed",
         "NEW" : "bar-new"
     };
 

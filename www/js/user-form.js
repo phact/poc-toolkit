@@ -17,7 +17,7 @@ var formClickEvent= function(){
                                 "properties": {
                                     "status": {
                                         "type": "string",
-                                        "enum": ["NEW","RUNNING","SUCCEEDED","FAILED","KILLED"],
+                                        "enum": ["NEW","RUNNING","SUCCEEDED","FAILED","SKIPPED"],
                                         "title":"Status"
 
                                     },
