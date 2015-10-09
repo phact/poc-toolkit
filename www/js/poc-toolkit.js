@@ -16,6 +16,31 @@ var minDate
 var gantt
 
 
+
+var formData = function(){
+
+    var result;
+    myAjaxCall = $.ajax({
+        url: "read/First land POC",
+        context: document.body,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+
+    }).done(function(data) {
+        console.log(data);
+
+        //replace form value with database
+        if (data!== ""){
+            $("form").empty();
+            default_schema.value = JSON.parse(data);
+            $('#form').jsonForm(default_schema);
+            buildGantt(data);
+        }
+    });
+
+}
+
+
 var saveTemplate = function(){
     var form= $('#form').jsonFormValue();
 
@@ -160,3 +185,5 @@ var buildGantt = function(){
 
     }
 }
+
+formData();
