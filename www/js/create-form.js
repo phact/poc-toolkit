@@ -68,6 +68,7 @@ $('form').jsonForm(
                         "onClick": function (evt) {
                             evt.preventDefault();
                             buildGantt();
+                            saveTemplate();
                         }
                     }
                 ]
