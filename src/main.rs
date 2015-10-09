@@ -20,7 +20,7 @@ use rustful::file::check_path;
 mod include_dir;
 mod create_schema;
 mod save_template;
-
+mod read_template;
 
 fn main() {
 
@@ -53,7 +53,8 @@ fn main() {
                 operation: Some(sub)
             },
             "/*file" => Get: Api::File,
-            "write/*payload" => Get: Api::Write
+            "write/*template_id/*payload" => Get: Api::Write,
+            "read/*key" => Get: Api::Read
         }
     };
 
@@ -95,7 +96,8 @@ enum Api {
         operation: Option<fn(i32) -> i32>
     },
     File,
-    Write
+    Write,
+    Read
 }
 
 impl Handler for Api {
@@ -144,11 +146,23 @@ impl Handler for Api {
                 }
             },
             Api::Write => {
-                 println!("Test Write");
+                 println!("Writing");
                  if let Some(payload) = context.variables.get("payload") {
-                    println!("the payload is {}",payload);
-                    save_template::save_template(&*payload);
-                }
+                     if let Some(template_id) = context.variables.get("template_id") {
+                         println!("the payload is {}",payload);
+                         println!("the template_id is {}", template_id);
+                         save_template::save_template(&*template_id, &*payload);
+                     }
+                 }
+            },
+            Api::Read =>{
+                 println!("Reading");
+                 if let Some(key) = context.variables.get("key"){
+                      println!("the key is {}", key);
+                      let payload = read_template::read_template(&*key);
+                      println!("the payload is {}", payload);
+                      response.send(payload);
+                 }
             }
         }
     }

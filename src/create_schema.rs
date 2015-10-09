@@ -7,7 +7,7 @@ use self::cql_bindgen::cass_iterator_next;
 
 static CREATE_KEYSPACE:&'static str = "CREATE KEYSPACE IF NOT EXISTS toolkit WITH replication = { \'class\': \
                                        \'SimpleStrategy\', \'replication_factor\': \'1\' };";
-static CREATE_TABLE:&'static str = "CREATE TABLE IF NOT EXISTS toolkit.templates (template_id uuid, payload text, \
+static CREATE_TABLE:&'static str = "CREATE TABLE IF NOT EXISTS toolkit.templates (template_id text, payload text, \
                                     PRIMARY KEY (template_id));";
 
 
