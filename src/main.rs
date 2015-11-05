@@ -52,9 +52,9 @@ fn main() {
                 value: value.clone(),
                 operation: Some(sub)
             },
-            "/*file" => Get: Api::File,
-            "write/*template_id/*payload" => Get: Api::Write,
-            "read/*key" => Get: Api::Read
+            "/se-toolkit/*file" => Get: Api::File,
+            "/se-toolkit/write/*template_id/*payload" => Get: Api::Write,
+            "/se-toolkit/read/*key" => Get: Api::Read
         }
     };
 

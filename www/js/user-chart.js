@@ -21,7 +21,7 @@ var formData = function(){
 
     var result;
     myAjaxCall = $.ajax({
-          url: "read/First land POC",
+          url: "read/First-land-POC",
           context: document.body,
           type: "GET",
           contentType: "application/json; charset=utf-8",

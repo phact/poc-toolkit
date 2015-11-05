@@ -21,7 +21,7 @@ var formData = function(){
 
     var result;
     myAjaxCall = $.ajax({
-        url: "read/First land POC",
+        url: "read/First-land-POC",
         context: document.body,
         type: "GET",
         contentType: "application/json; charset=utf-8",
@@ -45,7 +45,7 @@ var saveTemplate = function(){
     var form= $('#form').jsonFormValue();
 
     myAjaxCall = $.ajax({
-        url: "write/First land POC/"+JSON.stringify(form),
+        url: "write/First-land-POC/"+JSON.stringify(form),
         context: document.body,
         type: "GET",
         contentType: "application/json; charset=utf-8",
