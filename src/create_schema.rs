@@ -2,7 +2,7 @@ extern crate cassandra;
 extern crate cql_bindgen;
 
 use self::cassandra::*;
-
+use std::thread;
 use self::cql_bindgen::cass_iterator_next;
 
 static CREATE_KEYSPACE:&'static str = "CREATE KEYSPACE IF NOT EXISTS toolkit WITH replication = { \'class\': \
@@ -39,6 +39,7 @@ pub fn create_schema() {
                 let _ = session.execute_statement(&CassStatement::new(CREATE_KEYSPACE,0));
                 println!("create keyspace");
                 //print_keyspace(&mut session, "examples").unwrap();
+                thread::sleep_ms(1000);
                 println!("create table");
                 let _ = session.execute_statement(&CassStatement::new(CREATE_TABLE,0));
                 //print_table(&mut session, "examples", "schema_meta").unwrap();

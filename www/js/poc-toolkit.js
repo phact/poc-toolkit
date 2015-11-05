@@ -16,12 +16,11 @@ var minDate
 var gantt
 
 
-
-var formData = function(){
+var formData = function(templateName){
 
     var result;
     myAjaxCall = $.ajax({
-        url: "read/First land POC",
+        url: "read/"+ templateName,
         context: document.body,
         type: "GET",
         contentType: "application/json; charset=utf-8",
@@ -40,12 +39,43 @@ var formData = function(){
 
 }
 
+var populateTemplateDropdown = function(){
+    myAjaxCall = $.ajax({
+        url: "getTemplates",
+        context: document.body,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+
+    }).done(function(data) {
+        console.log(data);
+        templateArray = data.split(",");
+        for (i=0;i<templateArray.length;i++){
+            $("#template-select").append("<option>"+ templateArray[i] +"</option>")
+        }
+    });
+ 
+}
+
+$("#template-select").on("change", function(){
+    template = $("#template-select").val() 
+    if (!(template == "new")){
+        formData(template);
+        $("#new-template").prop("disabled",true);
+    }else{
+        $("#new-template").prop("disabled",false);
+    }
+});
 
 var saveTemplate = function(){
     var form= $('#form').jsonFormValue();
 
+    template = $("#template-select").val() 
+    if (template== "new"){
+        template = $("#new-template").val()
+    }
+
     myAjaxCall = $.ajax({
-        url: "write/First land POC/"+JSON.stringify(form),
+        url: "write/"+ template +"/"+JSON.stringify(form),
         context: document.body,
         type: "GET",
         contentType: "application/json; charset=utf-8",
@@ -186,4 +216,5 @@ var buildGantt = function(){
     }
 }
 
-formData();
+populateTemplateDropdown();
+//formData();

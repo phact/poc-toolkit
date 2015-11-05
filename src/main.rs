@@ -21,6 +21,7 @@ mod include_dir;
 mod create_schema;
 mod save_template;
 mod read_template;
+mod get_templates;
 
 fn main() {
 
@@ -54,7 +55,8 @@ fn main() {
             },
             "/*file" => Get: Api::File,
             "write/*template_id/*payload" => Get: Api::Write,
-            "read/*key" => Get: Api::Read
+            "read/*key" => Get: Api::Read,
+            "getTemplates" => Get: Api::GetTemplates
         }
     };
 
@@ -97,7 +99,8 @@ enum Api {
     },
     File,
     Write,
-    Read
+    Read,
+    GetTemplates
 }
 
 impl Handler for Api {
@@ -163,7 +166,12 @@ impl Handler for Api {
                       println!("the payload is {}", payload);
                       response.send(payload);
                  }
-            }
+            },
+           Api::GetTemplates =>{
+                println!("Fetching Templates");
+                let payload= get_templates::get_templates();
+                response.send(payload);
+            } 
         }
     }
 }
