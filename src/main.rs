@@ -53,10 +53,10 @@ fn main() {
                 value: value.clone(),
                 operation: Some(sub)
             },
-            "/*file" => Get: Api::File,
-            "write/*template_id/*payload" => Get: Api::Write,
-            "read/*key" => Get: Api::Read,
-            "getTemplates" => Get: Api::GetTemplates
+            "/se-toolkit/*file" => Get: Api::File,
+            "/se-toolkit/write/*template_id/*payload" => Get: Api::Write,
+            "/se-toolkit/read/*key" => Get: Api::Read,
+            "/se-toolkit/getTemplates" => Get: Api::GetTemplates
         }
     };
 
@@ -171,7 +171,7 @@ impl Handler for Api {
                 println!("Fetching Templates");
                 let payload= get_templates::get_templates();
                 response.send(payload);
-            } 
+            }
         }
     }
 }
